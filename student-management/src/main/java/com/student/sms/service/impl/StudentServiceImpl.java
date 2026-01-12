@@ -1,5 +1,6 @@
 package com.student.sms.service.impl;
 
+import com.student.sms.exception.ResourceNotFoundException;
 import com.student.sms.model.Student;
 import com.student.sms.repository.StudentRepository;
 import com.student.sms.service.StudentService;
@@ -29,7 +30,7 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public Student getStudentById(Long id) {
         return studentRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Student not found with id: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Student not found with id: " + id));
     }
 
     @Override
