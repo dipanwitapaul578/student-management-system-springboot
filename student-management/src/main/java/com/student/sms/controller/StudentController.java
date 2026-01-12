@@ -3,6 +3,10 @@ package com.student.sms.controller;
 import com.student.sms.model.Student;
 import com.student.sms.service.StudentService;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.http.ResponseEntity;
+import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
+
 
 import java.util.List;
 
@@ -18,9 +22,10 @@ public class StudentController {
 
     // ✅ CREATE student
     @PostMapping
-    public Student createStudent(@RequestBody Student student) {
-        return studentService.createStudent(student);
+    public ResponseEntity<Student> createStudent(@Valid @RequestBody Student student) {
+        return new ResponseEntity<>(studentService.createStudent(student), HttpStatus.CREATED);
     }
+
 
     // ✅ GET all students
     @GetMapping
@@ -36,10 +41,13 @@ public class StudentController {
 
     // ✅ UPDATE student
     @PutMapping("/{id}")
-    public Student updateStudent(@PathVariable Long id,
-                                 @RequestBody Student student) {
-        return studentService.updateStudent(id, student);
+    public ResponseEntity<Student> updateStudent(
+            @PathVariable Long id,
+            @Valid @RequestBody Student student) {
+
+        return ResponseEntity.ok(studentService.updateStudent(id, student));
     }
+
 
     // ✅ DELETE student
     @DeleteMapping("/{id}")

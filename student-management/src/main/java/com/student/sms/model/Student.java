@@ -2,6 +2,7 @@
 package com.student.sms.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 
 @Entity
 @Table(name = "students")
@@ -11,9 +12,18 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "Name must not be empty")
     private String name;
+
+    @Email(message = "Email should be valid")
+    @NotBlank(message = "Email must not be empty")
     private String email;
+
+    @NotBlank(message = "Course must not be empty")
     private String course;
+
+    @Min(value = 1, message = "Age must be at least 1")
+    @Max(value = 120, message = "Age must be less than 120")
     private int age;
 
     public Student() {}
