@@ -1,17 +1,21 @@
 package com.student.sms.service;
 
-import com.student.sms.model.Student;
+//import com.student.sms.model.Student;
+
+import com.student.sms.dto.StudentRequestDto;
+import com.student.sms.dto.StudentResponseDto;
+
 import java.util.List;
 
 public interface StudentService {
 
-    Student createStudent(Student student);
+    StudentResponseDto createStudent(StudentRequestDto dto);
 
-    List<Student> getAllStudents();
+    List<StudentResponseDto> getAllStudents();
 
-    Student getStudentById(Long id);
+    StudentResponseDto getStudentById(Long id);
 
-    Student updateStudent(Long id, Student student);
+    StudentResponseDto updateStudent(Long id, StudentRequestDto dto);
 
     void deleteStudent(Long id);
 }
